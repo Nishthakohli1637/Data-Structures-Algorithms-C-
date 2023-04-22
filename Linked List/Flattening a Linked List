@@ -1,0 +1,33 @@
+Node *merge_list(Node *ptr1, Node *ptr2){
+    Node *temp=new Node(0);
+    Node *res=temp;
+    while(ptr1 && ptr2){
+        if(ptr1->data<ptr2->data){
+            temp->bottom=ptr1;
+            temp=temp->bottom;
+            ptr1=ptr1->bottom;
+        }
+        else{
+            temp->bottom=ptr2;
+            temp=temp->bottom;
+            ptr2=ptr2->bottom;
+        }
+    }
+    if(ptr1){
+        temp->bottom=ptr1;
+    }
+    else{
+        temp->bottom=ptr2;
+    }
+    return res->bottom;
+}
+Node *flatten(Node *root)
+{
+   if(root==NULL || root->next==NULL){
+       return root;
+   }
+   root->next=flatten(root->next);
+   root=merge_list(root, root->next);
+   return root;
+}
+
