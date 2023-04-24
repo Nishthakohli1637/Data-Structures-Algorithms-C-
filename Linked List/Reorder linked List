@@ -1,0 +1,36 @@
+L0 → L1 → … → Ln - 1 → Ln ----->  L0 → Ln → L1 → Ln - 1 → L2 → Ln - 2 → …
+
+class Solution {
+public:
+    void reorderList(ListNode* head) {
+        ListNode* temp=head;
+        ListNode* midl=head; 
+        ListNode* prev=NULL;
+        if(head==NULL || head->next==NULL || head->next->next==NULL){
+            return;
+        }
+        while(temp->next && temp->next->next){
+            midl=midl->next;
+            temp=temp->next->next;
+        }
+        
+        while(midl){
+            ListNode* fwd=midl->next;
+            midl->next=prev;
+            prev=midl;
+            midl=fwd;
+        }
+        midl=prev;
+        while(head && midl){
+            ListNode*p=head->next;
+            ListNode*q=midl->next;
+            head->next=midl;
+            midl->next=p;
+            head=p;
+            midl=q;
+        }
+        if(head && head->next){
+            head->next->next=NULL;
+        }
+    }
+};
