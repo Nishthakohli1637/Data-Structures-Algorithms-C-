@@ -1,0 +1,74 @@
+#include<bits/stdc++.h>
+using namespace std;
+class Queue{
+    private:
+    int front;
+    int rear;
+    int size;
+    int *arr;
+    public:
+    Queue(int size){
+        this->size=size;
+        front=0;
+        rear=0;
+        arr=new int[size];
+    }
+    void enqueue(int x){
+        if(rear==size){
+            cout<<"queue is full"<<endl;
+        }
+        else{
+            arr[rear]=x;
+            rear++;
+        }
+    }
+    int dequeue(){
+        if(rear==front){
+            return -1;
+        }
+        else{
+            int ans=arr[front];
+            arr[front]=-1;
+            front++;
+            if(front==rear){
+                front=0;
+                rear=0;
+            }
+            return ans;
+        }
+        
+    }
+    bool isEmpty(){
+        if(front==rear){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    int qfront(){
+        if(front==rear){
+            return -1;
+        }
+        else{
+            return arr[front];
+        }
+    }
+};
+int main(){
+    Queue qt(5);
+    qt.enqueue(1);
+    qt.enqueue(2);
+    qt.enqueue(3);
+    qt.enqueue(4);
+    qt.enqueue(5);
+    cout<<"The first element of queue is :"<<qt.qfront()<<endl;
+    cout<<"The popped element is : "<<qt.dequeue()<<endl;
+    cout<<"The first element of queue is :"<<qt.qfront()<<endl;
+    if(qt.isEmpty()){
+        cout<<"Stack is empty"<<endl;
+    }
+    else{
+        cout<<"stack is not empty"<<endl;
+    }
+}
