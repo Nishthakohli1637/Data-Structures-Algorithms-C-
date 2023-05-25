@@ -1,0 +1,23 @@
+class Solution {
+public:
+    bool isSameTree(TreeNode* p, TreeNode* q) {
+        if(p==NULL && q==NULL){
+            return true;
+        }
+        if(p!=NULL && q==NULL){
+            return false;
+        }
+        if(p==NULL && q!=NULL){
+            return false;
+        }
+        bool s1=isSameTree(p->left, q->left);
+        bool s2=isSameTree(p->right, q->right);
+        bool s3=p->val==q->val;
+        if(s1 && s2 && s3){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+};
