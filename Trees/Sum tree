@@ -1,0 +1,26 @@
+// check if a tree, for every node in the tree other than leaves, it's value is equal to the sum of it's left subtree value and it's left subtree value. 
+
+
+class Solution
+{
+    public:
+    int sum(Node* root){
+        if(root==NULL){
+            return 0;
+        }
+        return sum(root->left)+root->data+sum(root->right);
+    }
+    bool isSumTree(Node* root)
+    {
+         if(root==NULL || (root->left==NULL && root->right==NULL)){
+             return true;
+         }
+         int left=sum(root->left);
+         int right=sum(root->right);
+         if((root->data==left + right) && isSumTree(root->right) && isSumTree(root->left)){
+             return true;
+         }
+         else{
+             return false;
+         }
+         }
