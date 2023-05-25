@@ -1,0 +1,47 @@
+//User function Template for C++
+
+/*
+structure of the node of the binary tree is as
+struct Node
+{
+    int data;
+    struct Node *left;
+    struct Node *right;
+
+    Node(int x)
+    {
+        data = x;
+        left = NULL;
+        right = NULL;
+    }
+};
+*/
+class Solution
+{
+public:
+    void sum_path(Node *root, int len, int &maxlen, int sum, int &maxsum){
+        if(root==NULL){
+            if(len>maxlen){
+                maxlen=len;
+                maxsum=sum;
+            }
+            else if(len==maxlen){
+                maxsum=max(sum, maxsum);
+            }
+            return;
+        }
+        sum=sum+root->data;
+        sum_path(root->left, len+1, maxlen, sum, maxsum);
+        sum_path(root->right, len+1, maxlen, sum, maxsum);
+        
+    }
+    int sumOfLongRootToLeafPath(Node *root)
+    {
+        int len=0;
+        int maxlen=0;
+        int sum=0;
+        int maxsum=INT_MIN;
+        sum_path(root, len, maxlen, sum, maxsum);
+        return maxsum;
+    }
+};
