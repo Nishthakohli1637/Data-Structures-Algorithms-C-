@@ -1,0 +1,18 @@
+class Solution {
+public:
+    bool is_symmetric_mirror(TreeNode* leftval, TreeNode* rightval){
+        if(leftval==NULL && rightval==NULL){
+            return true;
+        }
+        if(leftval!=NULL && rightval==NULL || leftval==NULL && rightval!=NULL){
+            return false;
+        }
+        if(leftval->val!=rightval->val){
+            return false;
+        }
+        return is_symmetric_mirror(leftval->left, rightval->right)&& is_symmetric_mirror(leftval->right, rightval->left);
+    }
+    bool isSymmetric(TreeNode* root) {
+     return is_symmetric_mirror(root->left, root->right);
+    }
+};
