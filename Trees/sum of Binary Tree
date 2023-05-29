@@ -1,0 +1,10 @@
+long int sumBT(Node* root)
+{
+    if(root==NULL){
+        return 0;
+    }
+    long int left_sum=sumBT(root->left);
+    long int right_sum=sumBT(root->right);
+    long int total=left_sum+right_sum+root->key;
+    return total;
+}
