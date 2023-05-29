@@ -1,0 +1,32 @@
+//You are given the head of a linked list, and an integer k.
+Return the head of the linked list after swapping the values of the kth node from the beginning and the kth node from the end
+(the list is 1-indexed).
+
+ 
+
+
+class Solution {
+public:
+    ListNode* swapNodes(ListNode* head, int k) {
+        int len=0;
+        ListNode* temp=head;
+        ListNode* start=head;
+        ListNode* end=head;
+        while(temp){
+            temp=temp->next;
+            len++;
+        }
+        int n=k-1;
+        while(n){
+            start=start->next;
+            n--;
+        }
+        len=len-k;
+        while(len){
+            end=end->next;
+            len--;
+        }
+        swap(start->val, end->val);
+        return head;
+    }
+};
