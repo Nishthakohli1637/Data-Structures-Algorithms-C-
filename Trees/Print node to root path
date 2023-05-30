@@ -1,0 +1,25 @@
+vector<int> path;
+bool node_path(Node* root, int node){
+if(root==NULL){
+return false;
+}
+if(root->data==node){
+path.push_back(root->data);
+return true;
+}
+bool left_child=node_path(root->left, node);
+if(left_child){
+path.push_back(root->left, node);
+return true;
+}
+bool right_child=node_path(root->right, node);
+if(right_child){
+path.push_back(root->right, node);
+return true;
+}
+return false;
+}
+
+vector<int> node_to_root_path(Node* root, int node){
+retur path;
+}
