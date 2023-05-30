@@ -1,0 +1,10 @@
+void K_levels_down(Node* root, int k){
+if(root==NULL || k<0){
+return;
+}
+if(k==0){
+cout<<root->data<<endl;
+}
+K_levels_down(root->left, k-1);
+K_levels_down(root->right, k-1);
+}
