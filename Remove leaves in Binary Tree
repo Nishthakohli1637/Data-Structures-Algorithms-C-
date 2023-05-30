@@ -1,0 +1,11 @@
+Node* remove_leaves(Node* root){
+if(root==NULL){
+return NULL;
+}
+if(root->left==NULL && root->right==NULL){
+return NULL
+}
+root->left=remove_leaves(root->left);
+root->right=remove_leaves(root->right);
+return root;
+}
