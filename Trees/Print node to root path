@@ -9,12 +9,12 @@ return true;
 }
 bool left_child=node_path(root->left, node);
 if(left_child){
-path.push_back(root->left, node);
+path.push_back(root->left);
 return true;
 }
 bool right_child=node_path(root->right, node);
 if(right_child){
-path.push_back(root->right, node);
+path.push_back(root->right);
 return true;
 }
 return false;
