@@ -1,0 +1,14 @@
+vector<int> parent;
+void single_child_nodes(Node* root){
+if(root==NULL){
+return;
+}
+if(root!=NULL && root->left==NULL && root->right!=NULL){
+parent.push_back(root->data);
+}
+if(root!=NULL && root->left!=NULL && root->right==NULL){
+parent.push_back(root->data);
+}
+single_child_nodes(root->left);
+single_child_nodes(root->right);
+}
