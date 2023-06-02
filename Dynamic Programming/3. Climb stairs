@@ -1,0 +1,55 @@
+//Memoization
+
+#include<bits/stdc++.h>
+using namespace std;
+int clim_stairs(int n, vector<int> &dp){
+    if(n==0){
+        return 1;
+    }
+    else if(n<0){
+        return 0;
+    }
+    if(dp[n]>0){
+        return dp[n];
+    }
+    int path1=clim_stairs(n-1, dp);
+    int path2=clim_stairs(n-2, dp);
+    int path3=clim_stairs(n-3, dp);
+    int ans=path1+path2+path3;
+    dp[n]=ans;
+    return dp[n];
+}
+int main(){
+    int n;
+    cin>>n;
+    vector<int> dp(n+1, -1);
+    dp[0]=1;
+    dp[1]=1;
+    cout<<clim_stairs(n, dp);
+}
+
+//Tabulation
+
+#include<bits/stdc++.h>
+using namespace std;
+int climb_stairs(int n){
+    vector<int> dp(n+1, -1);
+    dp[0]=1;
+    for(int i=1;i<=n;i++){
+        if(i==1){
+            dp[i]=dp[i-1];
+        }
+        else if(i==2){
+            dp[i]=dp[i-1]+dp[i-2];
+        }
+        else{
+            dp[i]=dp[i-1]+dp[i-2]+dp[i-3];
+        }
+    }
+    return dp[n];
+}
+int main(){
+    int n;
+    cin>>n;
+    cout<<climb_stairs(n);
+}
