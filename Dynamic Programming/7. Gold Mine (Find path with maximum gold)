@@ -1,0 +1,39 @@
+#include<bits/stdc++.h>
+using namespace std;
+int gold_mine(vector<vector<int>> v, int n, int m){
+    vector<vector<int>> dp(n, vector<int>(m));
+    for(int i=n-1;i>=0;i--){
+        for(int j=m-1;j>=0;j--){
+            if(j==m-1){
+               dp[i][j]=v[i][j]; 
+            }
+            else if(i==0){
+                dp[i][j]=max(dp[i][j+1], dp[i+1][j+1])+v[i][j];
+            }        
+            else if(i==n-1){
+                dp[i][j]=max(dp[i][j+1], dp[i-1][j+1])+v[i][j];
+            }
+            else{
+                dp[i][j]=max(dp[i][j+1], max(dp[i+1][j+1], dp[i-1][j+1]))+v[i][j];
+            }
+        }
+    }
+    int maxv=dp[0][0];
+    for(int i=0;i<n;i++){
+        if(dp[i][0]>maxv){
+            maxv=dp[i][0];
+        }
+    }
+    return maxv;
+}
+int main(){
+    int n, m;
+    cin>>n>>m;
+    vector<vector<int>> v(n, vector<int>(m));
+    for(int i=0;i<n;i++){
+        for(int j=0;j<m;j++){
+            cin>>v[i][j];
+        }
+    }
+    cout<<gold_mine(v, n, m);
+}
