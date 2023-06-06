@@ -1,0 +1,23 @@
+//No two buildings can occur together
+//You have to arrange buildings on two sides of the road such that No two buildings can occur together
+
+#include<bits/stdc++.h>
+using namespace std;
+int arrange_buildings(int n){
+ int oldbuild=1, oldspace=1;
+ int newbuild=0, newspace=0;
+ for(int i=2;i<=n;i++){
+     newbuild=oldspace;
+     newspace=oldspace+oldbuild;
+     oldbuild=newbuild;
+     oldspace=newspace;
+ }
+ int total=oldspace+oldbuild;
+ total=total*total;
+ return total;
+}
+int main(){
+    int n;
+    cin>>n;
+    cout<<arrange_buildings(n);
+}
