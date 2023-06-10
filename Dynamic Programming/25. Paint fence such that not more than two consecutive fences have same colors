@@ -1,0 +1,28 @@
+//25. Paint fence such that not more than two consecutive fences have same color
+
+#include<bits/stdc++.h>
+using namespace std;
+int paint_fence(int n, int k){
+    if(n==0){
+        return 0;
+    }
+    if(n==1){
+        return k;
+    }
+    int same=k*1;
+    int diff=k*(k-1);
+    int total=same+diff;
+    for(int i=2;i<n;i++){
+        same=diff*1;
+        diff=total*(k-1);
+        total=same+diff;
+    }
+    return total;
+}
+int main(){
+    int n;                 //no.of fences;
+    cin>>n;
+    int k;                //no. of colors;
+    cin>>k;
+    cout<<paint_fence(n, k);
+}
