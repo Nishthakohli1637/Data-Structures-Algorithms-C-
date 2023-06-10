@@ -1,0 +1,41 @@
+#include<bits/stdc++.h>
+using namespace std;
+int paint_house_many_colors(vector<vector<int>> a, int n, int colors){
+    int dp[n][colors];
+    for(int j=0;j<colors;j++){
+        dp[0][j]=a[0][j];
+    }
+    for(int i=1;i<n;i++){
+        for(int j=0;j<colors;j++){
+            int minv=INT_MAX;
+            for(int k=0;k<colors;k++){
+                if(k!=j){
+                    if(dp[i-1][k]<minv){
+                        minv=dp[i-1][k];
+                    }
+                }
+            }
+            dp[i][j]=a[i][j]+minv;
+        }
+    }
+    int minv=INT_MAX;
+    for(int k=0;k<colors;k++){
+        if(dp[n-1][k]<minv){
+            minv=dp[n-1][k];
+        }
+    }
+    return minv;
+}
+int main(){
+    int n;
+    cin>>n;
+    int colors;
+    cin>>colors;
+    vector<vector<int>> a(n, vector<int>(colors));
+    for(int i=0;i<n;i++){
+        for(int j=0;j<colors;j++){
+            cin>>a[i][j];
+        }
+    }
+    cout<<paint_house_many_colors(a, n, colors);
+}
