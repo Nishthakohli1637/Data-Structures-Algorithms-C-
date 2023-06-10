@@ -1,0 +1,29 @@
+//floor of dimension M*N is given in which you have to fit tiles of dimension M*1
+
+
+#include<bits/stdc++.h>
+using namespace std;
+int tile_floor(int n, int m){
+    int dp[n+1];
+    dp[0]=0;
+    dp[1]=1;
+    for(int i=2;i<=n;i++){
+        if(i<m){
+            dp[i]=1;
+        }
+        else if(i==m){
+            dp[i]=2;
+        }
+        else if(i>m){
+            dp[i]=dp[i-1]+dp[i-m];
+        }
+    }
+    return dp[n];
+}
+int main(){
+    int n;                //breadth of floor
+    cin>>n;
+    int m;               //length of floor, length of tile
+    cin>>m;
+    cout<<tile_floor(n, m);
+}
