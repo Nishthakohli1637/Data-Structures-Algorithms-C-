@@ -1,0 +1,24 @@
+#include<bits/stdc++.h>
+using namespace std;
+int buy_sell_stocks(int n, int arr[]){
+    int minv=INT_MAX;
+    int ans=INT_MIN;
+    int profit=0;
+    for(int i=0;i<n;i++){
+        if(arr[i]<minv){
+            minv=arr[i];
+        }
+        profit=arr[i]-minv;
+        ans=max(ans, profit);
+    }
+    return ans;
+}
+int main(){
+    int n;
+    cin>>n;
+    int arr[n];
+    for(int i=0;i<n;i++){
+        cin>>arr[i];
+    }
+    cout<<buy_sell_stocks(n, arr);
+}
