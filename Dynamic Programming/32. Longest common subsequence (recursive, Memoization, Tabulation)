@@ -1,0 +1,139 @@
+// Recursive code for Longest Common Subsequence
+
+#include<bits/stdc++.h>
+using namespace std;
+int lcs(string x, string y, int n, int m){
+    if(n==0 || m==0){
+        return 0;
+    }
+    if(x[n-1]==y[m-1])
+    return 1+lcs(x, y, n-1, m-1);
+    
+    else
+    return max(lcs(x, y, n-1, m), lcs(x, y, n, m-1));
+}
+int main(){
+    int n;
+    cin>>n;
+    int m;
+    cin>>m;
+    string x;
+    cin>>x;
+    string y;
+    cin>>y;
+    cout<<lcs(x, y, n, m);
+}
+
+
+
+
+// Memoization
+
+#include<bits/stdc++.h>
+using namespace std;
+int lcs(string x, string y, int n, int m, vector<vector<int>>&dp){
+    if(n==0 || m==0){
+        return 0;
+    }
+    if(dp[n][m]>0){
+        return dp[n][m];
+    }
+    if(x[n-1]==y[m-1]){
+        return dp[n][m]=1+lcs(x, y, n-1, m-1, dp);
+    }
+    else
+    return dp[n][m]=max(lcs(x, y, n-1, m, dp), lcs(x, y, n, m-1, dp));
+}
+int main(){
+    int n;
+    cin>>n;
+    int m;
+    cin>>m;
+    string x;
+    cin>>x;
+    string y;
+    cin>>y;
+    vector<vector<int>>dp(n+1, vector<int>(m+1));
+    for(int i=0;i<n;i++){
+        for(int j=0;j<m;j++){
+            dp[i][j]=-1;
+        }
+    }
+    cout<<lcs(x, y, n, m, dp);
+}
+
+
+//Tabulation
+
+#include<bits/stdc++.h>
+using namespace std;
+int lcs(string x, string y, int n, int m){
+    int dp[n+1][m+1];
+    for(int i=n-1;i>=0;i--){
+        for(int j=m-1;j>=0;j--){
+            if(i==n){
+               dp[i][j]=0; 
+            }
+            if(j==m){
+                dp[i][j]=0;
+            }
+            else{
+                if(x[i]==y[j]){
+                    dp[i][j]=1+dp[i+1][j+1];
+                }
+                else{
+                    dp[i][j]=max(dp[i+1][j], dp[i][j+1]);
+                }
+            }
+        }
+    }
+    return dp[0][0];
+}
+int main(){
+    int n;
+    cin>>n;
+    int m;
+    cin>>m;
+    string x;
+    cin>>x;
+    string y;
+    cin>>y;
+    cout<<lcs(x, y, n, m);
+}
+
+
+//Tabulation 2
+
+#include<bits/stdc++.h>
+using namespace std;
+int lcs(string x, string y, int n, int m){
+    int dp[n+1][m+1];
+    for(int i=0;i<=n;i++){
+        for(int j=0;j<=m;j++){
+            dp[i][j]=0;
+        }
+    }
+    for(int i=1;i<=n;i++){
+        for(int j=1;j<=m;j++){
+                if(x[i-1]==y[j-1]){
+                    dp[i][j]=1+dp[i-1][j-1];
+                }
+                else{
+                    dp[i][j]=max(dp[i-1][j], dp[i][j-1]);
+                }
+            }
+        }
+    
+    return dp[n][m];
+}
+int main(){
+    int n;
+    cin>>n;
+    int m;
+    cin>>m;
+    string x;
+    cin>>x;
+    string y;
+    cin>>y;
+    cout<<lcs(x, y, n, m);
+}
