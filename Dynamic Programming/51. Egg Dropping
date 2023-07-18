@@ -1,0 +1,31 @@
+#include<bits/stdc++.h>
+using namespace std;
+int egg_drop(int e, int f){
+    int dp[e+1][f+1];
+    for(int i=1;i<=e;i++){
+        for(int j=1;j<=f;j++){
+            if(i==1){
+                dp[i][j]=j;
+            }
+            else if(j==1){
+                dp[i][j]=1;
+            }
+            else{
+                int minv=INT_MAX;
+                for(int mj=0, pj=j-1;pj>=0;mj++, pj--){
+                    int v1=dp[i][pj];
+                    int v2=dp[i-1][mj];
+                    int val=max(v1, v2);
+                    minv=min(minv, val);
+                }
+                dp[i][j]=minv+1;
+            }
+        }
+    }
+    return dp[e][f];
+}
+int main(){
+    int e, f;
+    cin>>e>>f;
+    cout<<egg_drop(e, f);
+}
