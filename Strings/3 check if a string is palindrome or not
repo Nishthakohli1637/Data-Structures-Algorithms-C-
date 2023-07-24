@@ -1,0 +1,22 @@
+#include<bits/stdc++.h>
+using namespace std;
+bool check_palin(char name[], int n){
+    int s=0, e=n-1;
+    while(s<=e){
+        if(name[s]!=name[e]){
+            return false;
+        }
+        else if(name[s]==name[e]){
+            s++;
+            e--;
+        }
+    }
+    return true;
+}
+int main(){
+    int n;
+    cin>>n;
+    char name[n];
+    cin>>name;
+    cout<<check_palin(name, n);
+}
