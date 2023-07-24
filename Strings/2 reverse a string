@@ -1,0 +1,16 @@
+#include<bits/stdc++.h>
+using namespace std;
+void reverse_string(char name[], int n){
+    int s=0, e=n-1;
+    while(s<=e){
+        swap(name[s++], name[e--]);
+    }
+    cout<<name;
+}
+int main(){
+    int n;
+    cin>>n;
+    char name[n];
+    cin>>name;
+    reverse_string(name, n);
+}
