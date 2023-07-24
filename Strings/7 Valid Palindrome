@@ -1,0 +1,23 @@
+bool isPalindrome(string s) {
+        int n=s.size();
+        int start=0, e=n-1;
+        while(start<=e){
+            
+            if(!isalnum(s[start])){
+                start++;
+               continue;
+            }
+            if(!isalnum(s[e])){
+                e--;
+                continue;
+            }
+            if(tolower(s[start])!=tolower(s[e])){
+                return false;
+            }
+            else{
+                start++;
+                e--;
+            }
+        }
+        return true;
+    }
