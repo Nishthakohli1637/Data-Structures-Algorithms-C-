@@ -1,0 +1,15 @@
+string removeDuplicates(string s) {
+        string temp="";
+       for(int i=0;i<s.length();i++){
+           if(temp.empty() || s[i]!=temp.back()){
+               temp.push_back(s[i]);
+           }
+           else if(s[i]==temp.back()){
+               temp.pop_back();
+           }
+       }
+       return temp;
+    }
+
+    //i/p : "HELLO"
+      o/p : "HEO"
