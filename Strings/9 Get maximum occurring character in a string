@@ -1,0 +1,24 @@
+char getMaxOccuringChar(string str)
+    {
+        int arr[26]={0};
+        for(int i=0;i<str.length();i++){
+            char ch=str[i];
+            int val=0;
+            if(ch>='a' && ch<='z'){
+                val=ch-'a';
+            }
+            else{
+                val=ch-'A';
+            }
+            arr[val]++;
+        }
+        int maxv=-1, ans=0;
+        for(int i=0;i<26;i++){
+            if(maxv<arr[i]){
+                maxv=arr[i];
+                ans=i;
+            }
+        }
+        char max_char='a'+ans;
+        return max_char;
+        }
