@@ -1,0 +1,24 @@
+#include<bits/stdc++.h>
+using namespace std;
+string reverse_string(string str, int n){
+    reverse(str.begin(), str.end());
+    int s=0, e=0;
+    while(e<n){
+        while(e<n && str[e]!=' '){
+            e++;
+        }
+        reverse(str.begin()+s, str.begin()+e);
+        e++;
+        s=e;
+    }
+    return str;
+}
+int main(){
+    string str;
+    getline(cin, str);
+    int n=str.size();
+    cout<<reverse_string(str, n);
+}
+
+//i/p : the sky is blue
+o/p   : blue is the sky
