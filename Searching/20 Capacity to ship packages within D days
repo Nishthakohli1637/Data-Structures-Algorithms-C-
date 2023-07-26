@@ -1,0 +1,46 @@
+class Solution {
+public:
+    bool days_reqd(int cap, vector<int>& weights, int days){
+        int n=weights.size();
+        int day=1;
+        int sum=0;
+        for(int i=0;i<n;i++){
+            sum+=weights[i];
+            if(sum>cap){
+                day++;
+                sum=weights[i];
+            }
+            
+        }
+        if(day<=days){
+            return true;
+        }
+        else
+        return false;
+        // return day<=days;
+    }
+    int shipWithinDays(vector<int>& weights, int days) {
+        int sum=0, max_elem=INT_MIN;
+        for(int i=0;i<weights.size();i++){
+            sum=sum+weights[i];
+            max_elem=max(max_elem, weights[i]);
+        }
+        if(weights.size()==days){
+            return max_elem;
+        }
+        int s=max_elem, e=sum, ans=0;
+        while(s<=e){
+            int mid=s+(e-s)/2;
+            
+            if(days_reqd(mid, weights, days)){
+                ans=mid;
+                e=mid-1;
+                
+            }
+            else{
+                s=mid+1;
+            }
+        }
+        return ans;
+    }
+};
