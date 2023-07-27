@@ -1,0 +1,46 @@
+class Solution {
+public:
+bool lar_sa(vector<int>& nums, int mid, int k){
+    int sa=1,sum=0;
+    for(int i=0;i<nums.size();i++){
+        if(nums[i]>mid){
+            return false;
+        }
+        else if(nums[i]+sum>mid){
+            sa++;
+            sum=nums[i];
+            if(sa>k){
+                return false;
+            }
+        }
+        else{
+            sum+=nums[i];
+        }
+    }
+    return true;
+} 
+    int splitArray(vector<int>& nums, int k) {
+        int sum=0;
+        int maxv=INT_MIN;
+        for(int i=0;i<nums.size();i++){
+            maxv=max(maxv, nums[i]);
+            sum+=nums[i];
+        }
+        if(nums.size()==k){
+            return maxv;
+        }
+        int s=maxv, e=sum;
+        int ans=-1;
+        while(s<=e){
+            int mid=s+(e-s)/2;
+            if(lar_sa(nums, mid, k)){
+                ans=mid;
+                e=mid-1;
+            }
+            else{
+                s=mid+1;
+            }
+        }
+        return ans;
+    }
+};
