@@ -1,0 +1,33 @@
+class Solution {
+public:
+    string removeDuplicateLetters(string s) {
+        stack<char> st;
+        vector<int> freq(26);
+        vector<bool> exist(26);
+        for(int i=0;i<s.size();i++){
+            char ch=s[i];
+            freq[ch-'a']++;
+        }
+        for(int i=0;i<s.size();i++){
+            char ch=s[i];
+            freq[ch-'a']--;
+            if(exist[ch-'a']){
+                continue;
+            }
+            while(!st.empty() && st.top()>ch && freq[st.top()-'a']>0){
+                char rem=st.top();
+                st.pop();
+                exist[rem-'a']=false;
+            }
+            st.push(ch);
+            exist[ch-'a']=true;
+        }
+        string ans="";
+        while(!st.empty()){
+            ans.push_back(st.top());
+            st.pop();
+        }
+        reverse(ans.begin(), ans.end());
+        return ans;
+    }
+};
