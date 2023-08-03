@@ -1,0 +1,45 @@
+#include<bits/stdc++.h>
+using namespace std;
+class Max_stack(){
+    public:
+    stack<int> data;
+    stack<int> maxv;
+    Max_stack(){
+    }
+    void push(int x){
+        data.push(x);
+        int m=x;
+        if(data.size()>0){
+            m=max(m, data.top());
+        }
+        maxv.push(m);
+    }
+    int pop(){
+        maxv.pop();
+        int m=data.top();
+        data.pop();
+        return m;
+    }
+    int top(){
+        return data.top();
+    }
+    int top_max(){
+        return maxv.top();
+    }
+    int pop_max(){
+        stack<int> buffer;
+        int del=maxv.top();
+        while(data.top()!=del){
+            int res=data.top();
+            data.pop();
+            buffer.push(res);
+        }
+        pop();
+        while(buffer.size()>0){
+            int res=buffer.top();
+            buffer.pop();
+            data.push(res);
+        }
+        return del;
+    }
+};
