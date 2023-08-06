@@ -1,0 +1,19 @@
+//Whenever 'i' occurs in the string reverse the string before it
+
+class Solution {
+public:
+    string finalString(string s) {
+        string ns;
+        int n=s.size();
+        for(int j=0;j<n;j++){
+            char ch=s[j];
+            if(ch!='i'){
+                ns.push_back(s[j]);
+            }
+            else if(ch=='i'){
+                reverse(ns.begin(), ns.end());
+            }
+        }
+        return ns;
+    }
+};
