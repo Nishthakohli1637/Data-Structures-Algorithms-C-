@@ -19,3 +19,22 @@ public:
         return false;
     }
 };
+
+
+//Method-2
+
+ bool detectLoop(Node* head)
+    {
+        
+        // your code here
+        map<Node* , bool>visited;
+        Node* temp=head;
+        while(temp!=NULL){
+            if(visited[temp]==true){
+                return true;
+            }
+            visited[temp]=true;
+        }
+        return false;
+        
+    }
