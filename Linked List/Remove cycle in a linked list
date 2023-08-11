@@ -33,7 +33,9 @@ class Solution
             return;
         }
         Node* start=get_start(head);
-        
+        if(start==NULL){
+            return;
+        }
         Node* temp=start;
         while(temp->next!=start){
             temp=temp->next;
