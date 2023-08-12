@@ -26,3 +26,32 @@ public:
            return q->data;
     }
 };
+
+
+//Method-2
+class Solution{
+public:
+    int getNthFromLast(Node *head, int n)
+    {
+           // Your code here
+           if(head==NULL){
+            return -1;
+        }
+        Node *p=head;
+        Node *q=head;
+        int cnt=0;
+        Node *temp=head;
+        while(temp!=NULL){
+            cnt++;
+            temp=temp->next;
+        }
+        if(n>cnt){
+            return -1;
+        }
+        int pos=cnt-n;
+        for(int i=0;i<pos;i++){
+            p=p->next;
+        }
+           return p->data;
+    }
+};
