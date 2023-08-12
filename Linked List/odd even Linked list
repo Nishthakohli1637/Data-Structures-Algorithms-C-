@@ -1,0 +1,45 @@
+class Solution {
+public:
+    ListNode* oddEvenList(ListNode* head) {
+        if(head==NULL || head->next==NULL){
+            return head;
+        }
+        ListNode* temp=head;
+        ListNode* evenh=NULL;
+        ListNode* event=NULL;
+        ListNode* oddh=NULL;
+        ListNode* oddt=NULL;
+        int count=1;
+        while(temp!=NULL){
+            if(count%2==0){
+                if(evenh==NULL){
+                    evenh=temp;
+                    event=temp;
+                    temp=temp->next;
+                }
+                else{
+                    event->next=temp;
+                    event=event->next;
+                    temp=temp->next;
+                }
+            }
+            else{
+                if(oddh==NULL){
+                    oddh=temp;
+                    oddt=temp;
+                    temp=temp->next;
+                }
+                else{
+                    oddt->next=temp;
+                    oddt=oddt->next;
+                    temp=temp->next;
+                }
+            }
+            count++;
+        }
+        
+        event->next=NULL;
+        oddt->next=evenh;
+        return oddh;
+    }
+};
