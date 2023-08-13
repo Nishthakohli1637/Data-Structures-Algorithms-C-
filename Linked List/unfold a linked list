@@ -1,0 +1,28 @@
+void unfold(ListNode *head)
+{
+    if(head==NULL || head->next==NULL){
+        return;
+    }
+    ListNode *fp=head;
+    ListNode *fh=head;
+    ListNode *sp=head->next;
+    ListNode *sh=head->next;
+    while(sp!=NULL && sp->next!=NULL){
+        ListNode *fwd=sp->next;
+        fp->next=fwd;
+        sp->next=fwd->next;
+        fp=fp->next;
+        sp=sp->next;
+    }
+    fp->next=NULL;
+    
+    ListNode *curr=sh;
+    ListNode *prev=NULL;
+    while(curr!=NULL){
+        ListNode *fwd=curr->next;
+        curr->next=prev;
+        prev=curr;
+        curr=fwd;
+    }
+    fp->next=curr;
+}
