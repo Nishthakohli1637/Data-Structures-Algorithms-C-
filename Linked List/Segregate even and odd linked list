@@ -1,0 +1,29 @@
+class Solution{
+public:
+    Node* divide(int N, Node *head){
+        // code here
+        if(head==NULL || head->next==NULL){
+            return head;
+        }
+        Node *evenh=new Node(-1);
+        Node *event=evenh;
+        Node *oddh=new Node(-1);
+        Node *oddt=oddh;
+        Node *temp=head;
+        while(temp!=NULL){
+            if(temp->data%2!=0){
+                oddt->next=temp;
+                    oddt=oddt->next;
+            }
+            else{
+                    event->next=temp;
+                    event=event->next;
+            }
+            temp=temp->next;
+            
+        }
+        
+        oddt->next=NULL;
+        event->next=oddh->next;
+        return evenh->next;
+    }
