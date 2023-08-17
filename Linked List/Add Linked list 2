@@ -1,0 +1,49 @@
+class Solution {
+public:
+    ListNode* reverse(ListNode* head){
+        if(head==NULL || head->next==NULL){
+            return head;
+        }
+        ListNode* curr=head;
+        ListNode* prev=NULL;
+        while(curr!=NULL){
+            ListNode* fwd=curr->next;
+            curr->next=prev;
+            prev=curr;
+            curr=fwd;
+        }
+        return prev;
+    }
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        if(l1==NULL){
+            return l2;
+        }
+        if(l2==NULL){
+            return l1;
+        }
+        ListNode* rev1=reverse(l1);
+        ListNode* rev2=reverse(l2);
+        ListNode* temp=new ListNode();
+        ListNode* ans=temp;
+        int sum=0, carry=0;
+        while(rev1!=NULL ||  rev2!=NULL || carry){
+            sum=0;
+            if(rev1){
+                sum+=rev1->val;
+                rev1=rev1->next;
+            }
+            if(rev2){
+                sum+=rev2->val;
+                rev2=rev2->next;
+            }
+            sum+=carry;
+            carry=sum/10;
+            ListNode* value=new ListNode(sum%10);
+            ans->next=value;
+            ans=ans->next;
+        }
+
+        
+        return reverse(temp->next);
+    }
+};
