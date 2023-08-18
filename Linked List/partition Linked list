@@ -1,0 +1,24 @@
+class Solution {
+public:
+    ListNode* partition(ListNode* head, int x) {
+        ListNode* dummy=new ListNode();
+        ListNode* big_dummy=new ListNode();
+        ListNode* small=dummy;
+        ListNode* big=big_dummy;
+        ListNode* curr=head;
+        while(curr!=NULL){
+            if(curr->val<x){
+                small->next=curr;
+                small=small->next;
+            }
+            else{
+                big->next=curr;
+                big=big->next;
+            }
+            curr=curr->next;
+        }
+        big->next=NULL;
+        small->next=big_dummy->next;
+        return dummy->next;
+    }
+};
