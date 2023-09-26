@@ -1,0 +1,39 @@
+#include<bits/stdc++.h>
+using namespace std;
+int longest_substring_with_k_unique_char(string s, int k){
+    int n=s.size();
+    unordered_map<char, int> m;
+    int i=0, j=0;
+    int maxv=INT_MIN;
+    while(j<n){
+        m[s[j]]++;
+        if(m.size()<k){
+            j++;
+        }
+        else if(m.size()==k){
+            maxv=max(maxv, j-i+1);
+            j++;
+        }
+        else if(m.size()>k){
+            while(m.size()>k){
+                m[s[i]]--;
+                if(m[s[i]]==0){
+                    m.erase(s[i]);
+                }
+                i++;
+            }
+            if(m.size()==0){
+                maxv=max(maxv, j-i+1);
+            }
+            j++;
+    }
+    }
+    return maxv;
+}
+int main(){
+    string s;
+    cin>>s;
+    int k;
+    cin>>k;
+    cout<<longest_substring_with_k_unique_char(s, k);
+}
