@@ -1,0 +1,43 @@
+#include<bits/stdc++.h>
+using namespace std;
+vector<int> first_neg_num(int n, int arr[], int k){
+    int i=0, j=0;
+    vector<int>ans;
+    queue<int> q;
+    while(j<n){
+        if(arr[j]<0){
+            q.push(arr[j]);
+        }
+        if(j-i+1<k){
+            j++;
+        }
+        else if(j-i+1==k){
+            if(q.empty()){
+                ans.push_back(0);
+            }
+            else{
+                ans.push_back(q.front());
+                if(arr[i]==q.front()){
+                    q.pop();
+                }
+            }
+            i++;
+            j++;
+        }
+    }
+    return ans;
+}
+int main(){
+    int n;
+    cin>>n;
+    int arr[n];
+    for(int i=0;i<n;i++){
+        cin>>arr[i];
+    }
+    int k;
+    cin>>k;
+    vector<int> v=first_neg_num(n, arr, k);
+    for(int i=0;i<v.size();i++){
+        cout<<v[i];
+    }
+}
