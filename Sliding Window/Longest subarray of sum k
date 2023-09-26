@@ -1,0 +1,39 @@
+#include<bits/stdc++.h>
+using namespace std;
+int large_subarray_sum_k(int n, int arr[], int k){
+    int maxv=INT_MIN;
+    int i=0, j=0;
+    int sum=0;
+    while(j<n){
+        sum+=arr[j];
+        if(sum<k){
+            j++;
+        }
+        else if(sum==k){
+            maxv=max(maxv, j-i+1);
+            j++;
+        }
+        else if(sum>k){
+            while(sum>k){
+                sum-=arr[i];
+                i++;
+            }
+            if(sum==k){
+                maxv=max(maxv, j-i+1);
+            }
+            j++;
+        }
+    }
+    return maxv;
+}
+int main(){
+    int n;
+    cin>>n;
+    int arr[n];
+    for(int i=0;i<n;i++){
+        cin>>arr[i];
+    }
+    int k;
+    cin>>k;
+    cout<<large_subarray_sum_k(n, arr, k);
+}
