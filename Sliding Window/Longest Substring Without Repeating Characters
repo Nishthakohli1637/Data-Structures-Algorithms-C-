@@ -1,0 +1,31 @@
+#include<bits/stdc++.h>
+using namespace std;
+int longest_substring_without_repeating_char(string s){
+    int i=0, j=0;
+    int n=s.size();
+    unordered_map<char, int> mp;
+    int maxv=INT_MIN;
+    while(j<n){
+        mp[s[j]]++;
+        if(mp.size()==j-i+1){
+            maxv=max(maxv, j-i+1);
+            j++;
+        }
+        else if(mp.size()<(j-i+1)){
+            while(mp.size()<(j-i+1)){
+                mp[s[i]]--;
+                if(mp[s[i]]==0){
+                    mp.erase(s[i]);
+                }
+                i++;
+            }
+            j++;
+        }
+    }
+    return maxv;
+}
+int main(){
+    string s;
+    cin>>s;
+    cout<<longest_substring_without_repeating_char(s);
+}
