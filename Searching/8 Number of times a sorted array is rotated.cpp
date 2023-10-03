@@ -6,6 +6,9 @@ int rot_sort_times(int a[], int n){
         int mid=s+(e-s)/2;
         int prev=(mid+n-1)%n;
         int next=(mid+1)%n;
+        if(arr[s]<=arr[e]){
+            return s;
+        }
         if(a[prev]>a[mid] && a[next]>a[mid]){
             return mid;
         }
