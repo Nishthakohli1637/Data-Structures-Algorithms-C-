@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int numWays(int steps, int arrLen) {
+        int mod=1e9+7;
+        arrLen=min(arrLen, steps);
+        vector<vector<int>>dp(arrLen+1, vector<int>(steps+1, 0));
+        dp[0][0]=1;
+        for(int i=1;i<=steps;i++){
+            for(int j=0;j<arrLen;j++){
+                dp[j][i]=dp[j][i-1];     //stay
+                if(j>0){
+                    dp[j][i]=(dp[j][i]+dp[j-1][i-1])%mod;   //move left
+                }
+                if(j<arrLen){
+                    dp[j][i]=(dp[j][i]+dp[j+1][i-1])%mod;   //move right
+                }
+            }
+        }
+        return dp[0][steps];
+    }
+};
