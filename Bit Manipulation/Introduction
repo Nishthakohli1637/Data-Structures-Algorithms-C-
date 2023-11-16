@@ -1,0 +1,22 @@
+AND (&)
+- all 1's -> 1
+- any 0's -> 0
+
+OR (|)
+- all 0's -> 0
+- any 1's -> 1
+
+XOR (^)
+- even 1's -> 0
+- odd 1's  -> 1
+
+NOT (!)
+- 1 -> 0
+- 0-> 1
+
+Right Shift Operation (>>)
+- a=5, binary(101)  a>>1 (1 right bit will go off)
+    =10 
+- a=10, binary(1010) a>>3 (3 right bit will go off)
+    =1 (10/2,5/2, 2/2 =1)
+
