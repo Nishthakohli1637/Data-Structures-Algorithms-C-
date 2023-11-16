@@ -1,0 +1,33 @@
+#include<bits/stdc++.h>
+using namespace std;
+int xor_l_r(int l, int r){
+    int res=0;
+    for(int i=l;i<=r;i++){
+        res=res^i;
+    }
+    return res;
+}
+int main(){
+    int l, r;
+    cin>>l>>r;
+    cout<<xor_l_r(l, r);
+}
+
+#include<bits/stdc++.h>
+using namespace std;
+int xor_l_r(int l, int r){
+    int res1=0, res2=0;
+    for(int i=1;i<=r;i++){
+        res1=res1^i;
+    }
+    
+    for(int i=1;i<l;i++){
+        res2=res2^i;
+    }
+    return res1^res2;
+}
+int main(){
+    int l, r;
+    cin>>l>>r;
+    cout<<xor_l_r(l, r);
+}
