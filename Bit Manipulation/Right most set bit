@@ -1,0 +1,17 @@
+#include <iostream>
+#include <bitset>
+
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+    int rmbs = n & (~n + 1);
+
+    // Convert integer to binary string
+    string binaryString = bitset<32>(rmbs).to_string();
+
+    cout << "Binary representation of the rightmost set bit: " << binaryString << endl;
+
+    return 0;
+}
