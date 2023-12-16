@@ -1,0 +1,34 @@
+int second_large(int n, vector<int> a){
+    int maxv=a[0], smax=-1;
+    for(int i=0;i<n;i++){
+        if(a[i]>maxv){
+            smax=maxv;
+            maxv=a[i];
+        }
+        else if(a[i]!=maxv && a[i]>smax){
+            smax=a[i];
+        }
+    }
+    return smax;
+}
+int second_small(int n, vector<int> a){
+    int minv=a[0], sminv=INT_MAX;
+    for(int i=0;i<n;i++){
+        if(a[i]<minv){
+            sminv=minv;
+            minv=a[i];
+        }
+        else if(a[i]!=minv && a[i]<sminv){
+            sminv=a[i];
+        }
+    }
+    return sminv;
+}
+vector<int> getSecondOrderElements(int n, vector<int> a) {
+    vector<int> ans;
+   int smax=second_large(n, a);
+   int smin=second_small(n, a);
+    ans.push_back(smax);
+    ans.push_back(smin);
+    return ans;
+}
