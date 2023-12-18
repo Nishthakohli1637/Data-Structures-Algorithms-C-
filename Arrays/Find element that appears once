@@ -1,0 +1,49 @@
+#include<vector>
+
+int getSingleElement(vector<int> &arr){
+	int n=arr.size();
+	int ans=-1;
+	for(int i=0;i<n;i++){
+		int count=0;
+		for(int j=0;j<n;j++){
+			if(arr[i]==arr[j]){
+				count++;
+			}
+		}
+		if(count==1){
+			ans=arr[i];
+		}
+	}
+	return ans;	
+}
+
+APPROACH 2
+#include<vector>
+#include<bits/stdc++.h>
+int getSingleElement(vector<int> &arr){
+	unordered_map<int, int> mp;
+	int ans=-1;
+	int n=arr.size();
+	for(int i=0;i<n;i++){
+		mp[arr[i]]++;
+	}
+	for(auto it:mp){
+		if(it.second==1){
+			ans=it.first;
+			break;
+		}
+	}
+	return ans;	
+}
+
+
+APPROACH 3
+#include<vector>
+
+int getSingleElement(vector<int> &arr){
+	int XOR=0;
+	for(int i=0;i<arr.size();i++){
+		XOR=XOR^arr[i];
+	}	
+	return XOR;
+}
