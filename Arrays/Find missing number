@@ -1,0 +1,47 @@
+int missingNumber(vector<int>&a, int N) {
+    int ans=-1;
+    for(int i=1;i<=N;i++){
+        int flag=0;
+        for(int j=0;j<N-1;j++){
+            if(a[j]==i){
+                flag=1;
+                break;
+            }
+        }
+        if(flag==0){
+            ans= i;
+            break;
+        }
+    }
+    return ans;
+}
+
+
+APPROACH 2
+#include<bits/stdc++.h>
+int missingNumber(vector<int>&a, int N) {
+    int ans=-1;
+    unordered_map<int, int> mp;
+    
+    for(int i=0;i<N;i++){
+        mp[a[i]]=1;
+    }
+    for(int i=1;i<=N;i++){
+        if(mp[i]==0){
+            ans=i;
+            break;
+        }
+    }
+    return ans;
+}
+
+
+APPROACH 3
+int missingNumber(vector<int>&a, int N) {
+    int sum=N*(N+1)/2;
+    int s=0;
+    for(int i=0;i<N-1;i++){
+        s+=a[i];
+    }
+    return (sum-s);
+}
