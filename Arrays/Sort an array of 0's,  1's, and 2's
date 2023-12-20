@@ -1,0 +1,34 @@
+class Solution {
+public:
+    void sortColors(vector<int>& nums) {
+        int r=0, w=1, b=2, j=0;
+        for(int i=0;i<nums.size();i++){
+            if(nums[i]==r){
+                swap(nums[i],nums[j]);
+                j++;
+            }
+            else{
+                continue;
+            }
+        }
+        for(int i=0;i<nums.size();i++){
+            if(nums[i]==w){
+                swap(nums[i], nums[j]);
+                j++;
+            }
+            else{
+                continue;
+            }
+        }
+        for(int i=0;i<nums.size();i++){
+            if(nums[i]==b){
+                swap(nums[i], nums[j]);
+                j++;
+            }
+            else{
+                continue;
+            }
+        }
+        
+    }
+};
