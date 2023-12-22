@@ -1,0 +1,42 @@
+#include<bits/stdc++.h>
+int majorityElement(vector<int> v) {
+	unordered_map<int, int> mp;
+	int ans=-1;
+	for(int i=0;i<v.size();i++){
+		mp[v[i]]++;
+	}
+	for(auto i: mp){
+		if(i.second > (v.size()/2)){
+			ans= i.first;
+		}
+	}
+	return ans;
+}
+
+APPROACH 2
+MOORE'S VOTING ALGORITHM
+int majorityElement(vector<int> v) {
+	int ele=0, cnt=0;
+	for(int i=0;i<v.size();i++){
+          if (cnt == 0) {
+            cnt = 1;
+            ele = v[i];
+          }
+        
+	else if(ele==v[i]){
+		cnt++;
+          } else {
+                cnt--;
+          }
+        }
+		int count=0;
+		for(int i=0;i<v.size();i++){
+			if(ele==v[i]){
+				count++;
+			}
+			if(count>v.size()/2){
+				return v[i];
+			}
+		}
+		return -1;
+}
