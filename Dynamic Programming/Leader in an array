@@ -1,0 +1,12 @@
+vector<int> superiorElements(vector<int>&a) {
+    vector<int> ans;
+    int maxv=INT_MIN;
+    int n=a.size();
+    for(int i=n-1;i>=0;i--){
+        if(maxv<a[i]){
+            maxv=a[i];
+            ans.push_back(maxv);
+        }
+    }
+    return ans;
+}
