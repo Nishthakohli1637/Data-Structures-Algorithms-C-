@@ -1,0 +1,18 @@
+#include<bits/stdc++.h>
+vector<int> majorityElement(vector<int> v) {
+	vector<int> ans;
+	unordered_map<int, int> mp;
+	int n=v.size();
+	int minv=(int)(n/3)+1;
+	for(int i=0;i<n;i++){
+		mp[v[i]]++;
+		if(mp[v[i]]==minv){
+			ans.push_back(v[i]);
+		}
+		if(ans.size()==2){
+			break;
+		}
+	}
+	sort(ans.begin(), ans.end());
+	return ans;
+}
