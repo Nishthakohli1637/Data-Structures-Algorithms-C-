@@ -30,3 +30,39 @@ int main(){
     
     cout<<rot_sort_times(a, n);
 }
+
+
+APPROACH 2
+    #include<bits/stdc++.h>
+int findKRotation(vector<int> &arr){
+    // Write your code here.
+    int n=arr.size();
+	int s=0, e=n-1;
+	int ans=INT_MAX;
+    int index=-1;
+	while(s<=e){
+		int mid=(s+e)/2;
+        if(arr[s]<=arr[e]){
+            ans=min(ans, arr[s]);
+            if(ans==arr[s]){
+                index=s;
+            }
+            break;
+        }
+		if(arr[s]<=arr[mid]){
+			ans=min(ans, arr[s]);
+            if(ans==arr[s]){
+                index=s;
+            }
+			s=mid+1;
+		}
+		else{
+			ans=min(ans, arr[mid]);
+            if(ans==arr[mid]){
+                index=mid;
+            }
+			e=mid-1;
+		}
+	}
+	return index;    
+}
