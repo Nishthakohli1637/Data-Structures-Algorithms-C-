@@ -1,0 +1,39 @@
+#include<bits/stdc++.h>
+bool possible(vector<int> arr, int k, int m, int mid){
+	int count=0, count_bou=0;
+	int n=arr.size();
+	for(int i=0;i<n;i++){
+		if(arr[i]<=mid){
+			count++;
+		}
+		else{
+			count_bou+=(count/k);
+			count=0;
+		}
+	}
+	count_bou+=(count/k);
+	return count_bou>=m;
+}
+int roseGarden(vector<int> arr, int k, int m)
+{
+	// Write your code here
+	int n=arr.size();
+	int minv=INT_MAX, maxv=INT_MIN;
+	for(int i=0;i<n;i++){
+		minv=min(arr[i], minv);
+		maxv=max(arr[i], maxv);
+	}
+	int s=minv, e=maxv;
+	int ans=-1;
+	while(s<=e){
+		int mid=(s+e)/2;
+		if(possible(arr, k, m, mid)){
+			ans=mid;
+			e=mid-1;
+		}
+		else{
+			s=mid+1;
+		}
+	}
+	return ans;
+}
