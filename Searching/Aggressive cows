@@ -1,0 +1,35 @@
+#include<bits/stdc++.h>
+bool possible(vector<int> &stalls, int k, int mid){
+    int cnt_cow=1;
+    int dist_sum=stalls[0];
+    int n=stalls.size();
+    for(int i=0;i<n;i++){
+        if(stalls[i]-dist_sum>=mid){
+            cnt_cow+=1;
+            dist_sum=stalls[i];
+        }
+        if(cnt_cow>=k){
+            return true;
+        }
+    }
+    return false;
+}
+int aggressiveCows(vector<int> &stalls, int k)
+{
+    //    Write your code here.
+    int n=stalls.size();
+    sort(stalls.begin(), stalls.end());
+    int s=0, e=stalls[n-1]-stalls[0];
+    int ans=-1;
+    while(s<=e){
+        int mid=(s+e)/2;
+        if(possible(stalls, k, mid)){
+            ans=mid;
+            s=mid+1;
+        }
+        else{
+            e=mid-1;
+        }
+    }
+    return ans;
+}
