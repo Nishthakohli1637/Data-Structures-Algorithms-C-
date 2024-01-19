@@ -1,0 +1,52 @@
+#include<bits/stdc++.h>
+bool possible(vector<int> &boards, int k, int mid){
+    int sum=0, paint=1;
+    int n=boards.size();
+    for (int i = 0; i < n; i++) {
+        if(boards[i]>mid){
+            return  false;
+        }
+        else if(sum+boards[i]>mid){
+            paint++;
+            sum=boards[i];
+            if(paint>k){
+                return false;
+            }
+        }
+        else{
+            sum+=boards[i];
+        }
+    }
+    return true;
+}
+int findLargestMinDistance(vector<int> &boards, int k)
+{
+    //    Write your code here.
+    
+    int n=boards.size();
+    int sum=0, maxv=INT_MIN;
+    for(int i=0;i<n;i++){
+        sum+=boards[i];
+        maxv=max(maxv, boards[i]);
+    }
+    int s=maxv, e=sum;
+    int ans=-1;
+    if(n==k){
+        return maxv;
+    }
+    else if(n<k){
+        return -1;
+    }
+    while(s<=e){
+        int mid=(s+e)/2;
+        
+        if(possible(boards, k, mid)){
+            ans=mid;
+            e=mid-1;
+        }
+        else{
+            s=mid+1;
+        }
+    }
+    return ans;
+}
