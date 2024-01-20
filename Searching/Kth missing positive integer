@@ -1,0 +1,15 @@
+int missingK(vector < int > vec, int n, int k) {
+    // Write your code here.
+    int s=0, e=n-1;
+    while(s<=e){
+        int mid=(s+e)/2;
+
+        if((vec[mid]-(mid+1))<k){
+            s=mid+1;
+        }
+        else{
+            e=mid-1;
+        }
+    }
+    return s+k;
+}
