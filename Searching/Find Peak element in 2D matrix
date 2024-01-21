@@ -1,0 +1,32 @@
+int max_row(vector<vector<int>> &g, int n, int m, int col){
+    int max_val=-1, idx=-1;
+    for(int i=0;i<n;i++){
+        if(g[i][col]>max_val){
+            max_val=g[i][col];
+            idx=i;
+        }
+    }
+    return idx;
+}
+vector<int> findPeakGrid(vector<vector<int>> &g){
+    // Write your code here. 
+    int n=g.size();
+    int m=g[0].size();
+    int s=0, e=m-1;
+    while(s<=e){
+        int mid=(s+e)/2;
+        int row=max_row(g, n, m, mid);
+        int left=mid-1 > 0 ? g[row][mid-1] : -1;
+        int right=mid+1 < m ? g[row][mid+1] : -1;
+        if(g[row][mid]>left && g[row][mid]>right){
+            return {row, mid};
+        }
+        else if(g[row][mid]<left){
+            e=mid-1;
+        }
+        else{
+            s=mid+1;
+        }
+    }
+    return {-1, -1};
+}
