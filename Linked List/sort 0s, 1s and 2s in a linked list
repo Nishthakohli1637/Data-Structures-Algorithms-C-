@@ -39,3 +39,47 @@ class Solution
         return head;
         
     }
+
+
+APPROACH 2
+Node* sortList(Node *head){
+    // Write your code here.
+    if(head==NULL || head->next==NULL){
+        return head;
+    }
+    Node *zeroh=new Node(-1);
+    Node *oneh=new Node(-1);
+    Node *twoh=new Node(-1);
+    Node *zero=zeroh;
+    Node *one=oneh;
+    Node *two=twoh;
+    Node *temp=head;
+    while(temp!=NULL){
+        if(temp->data==0){
+            zero->next=temp;
+            zero=zero->next;
+        }
+        else if(temp->data==1){
+            one->next=temp;
+            one=one->next;
+        }
+        else{
+            two->next=temp;
+            two=two->next;
+        }
+        temp=temp->next;
+    }
+    if(oneh->next){
+        zero->next=oneh->next;
+    }
+    else{
+        zero->next=twoh->next;
+    }
+    one->next=twoh->next;
+    two->next=NULL;
+    Node *new_head=zeroh->next;
+    delete zeroh;
+    delete oneh;
+    delete twoh;
+    return new_head;
+}
