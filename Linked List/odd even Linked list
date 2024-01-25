@@ -43,3 +43,24 @@ public:
         return oddh;
     }
 };
+
+
+APPROACH 2
+Node* oddEvenList(Node* head)
+{
+	// Write your code here.
+    Node* odd=head;
+    Node* even=head->next;
+    Node* evenHead=head->next;
+    if(head==NULL || head->next==NULL){
+        return head;
+    }
+    while(even!=NULL && even->next!=NULL){
+        odd->next=odd->next->next;
+        even->next=even->next->next;
+        odd=odd->next;
+        even=even->next;
+    }
+    odd->next=evenHead;
+    return head;
+}
