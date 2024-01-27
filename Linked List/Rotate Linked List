@@ -24,3 +24,42 @@ public:
 
     }
 };
+
+
+
+APPROACH 2
+Node *find_nth_node(Node *head, int k){
+     int cnt=0;
+     Node *temp=head;
+     while(temp!=NULL){
+          if(cnt==k){
+               return temp;
+          }
+          cnt++;
+          temp=temp->next;
+     }
+     return temp;
+}
+Node *rotate(Node *head, int k) {
+     // Write your code here.
+     if(head==NULL || k==0){
+          return head;
+     }
+     Node *tail=head;
+     int len=1;
+     while(tail->next!=NULL){
+          len++;
+          tail=tail->next;
+          
+     }
+     
+     if(k%len==0){
+          return head;
+     }
+     k=k%len;
+     tail->next=head;
+     Node *nextnode=find_nth_node(head, len-k-1);
+     head=nextnode->next;
+     nextnode->next=NULL;
+     return head;
+}
