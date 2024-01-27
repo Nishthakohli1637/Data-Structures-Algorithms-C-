@@ -1,0 +1,22 @@
+int find_len(Node *slow, Node *fast){
+    int cnt=1;
+    fast=fast->next;
+    while(slow!=fast){
+        cnt++;
+        fast=fast->next;
+    }
+    return cnt;
+}
+int lengthOfLoop(Node *head) {
+    // Write your code here
+    Node *slow=head;
+    Node *fast=head;
+    while(fast!=NULL && fast->next!=NULL){
+        fast=fast->next->next;
+        slow=slow->next;
+        if(slow==fast){
+            return find_len(slow, fast);
+        }
+    }
+    return 0;
+}
