@@ -1,0 +1,49 @@
+class Node{
+    public:
+    Node* next=NULL;
+    Node* prev=NULL;
+    string url;
+    Node(string &url){
+        this->url=url;
+    }
+};
+class BrowserHistory {
+public:
+    Node* curr=NULL;
+    BrowserHistory(string homepage) {
+         curr=new Node(homepage);
+    }
+    
+    void visit(string url) {
+        Node* newNode=new Node(url);
+        curr->next=newNode;
+        newNode->prev=curr;
+        curr=newNode;
+    }
+    
+    string back(int steps) {
+        while(steps){
+            if(curr->prev){
+                curr=curr->prev;
+                steps--;
+            }
+            else{
+                break;
+            }
+        }
+        return curr->url;
+    }
+    
+    string forward(int steps) {
+        while(steps){
+            if(curr->next){
+                curr=curr->next;
+                steps--;
+            }
+            else{
+                break;
+            }
+        }
+        return curr->url;
+    }
+};
