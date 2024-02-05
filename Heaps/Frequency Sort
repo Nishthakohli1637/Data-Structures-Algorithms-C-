@@ -1,0 +1,29 @@
+#include<bits/stdc++.h>
+using namespace std;
+void frequency_sort(int arr[], int n){
+    unordered_map<int, int> mp;
+    for(int i=0;i<n;i++){
+        mp[arr[i]]++;
+    }
+    priority_queue<pair<int, int>> maxh;
+    for(auto it : mp){
+        maxh.push({it.second, it.first});
+    }
+    while(!maxh.empty()){
+        int freq=maxh.top().first;
+        int val=maxh.top().second;
+        for(int i=0;i<freq;i++){
+            cout<<val<<" ";
+        }
+        maxh.pop();
+    }
+}
+int main(){
+    int n;
+    cin>>n;
+    int arr[n];
+    for(int i=0;i<n;i++){
+        cin>>arr[i];
+    }
+    frequency_sort(arr, n);
+}
