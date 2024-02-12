@@ -1,0 +1,29 @@
+class Solution {
+public:
+int findpos(vector<int>& inorder, int elem, int n){
+    for(int i=0;i<n;i++){
+        if(inorder[i]==elem){
+            return i;
+        }
+    }
+    return -1;
+}
+    TreeNode* Solve(vector<int>& preorder, vector<int>& inorder, int &preindex, int instart, int inend, int n){
+        if(preindex >= n || instart > inend){
+            return NULL;
+        }
+        int elem =preorder[preindex++];
+        TreeNode* root=new TreeNode(elem);
+        int pos=findpos(inorder, elem, n);
+
+        root->left=Solve(preorder, inorder, preindex, instart, pos-1, n);
+        root->right=Solve(preorder, inorder, preindex, pos+1, inend, n);
+        return root;
+    }
+    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
+        int preindex=0;
+        int n=inorder.size();
+        TreeNode* ans=Solve(preorder, inorder, preindex, 0, n-1, n);
+        return ans;
+    }
+};
