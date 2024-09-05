@@ -1,0 +1,20 @@
+class Solution {
+public:
+    void gen_paren(int s, int e, string current, vector<string>&res){
+        if(s==0 && e==0){
+            res.push_back(current);
+            return;
+        }
+        if(s>0){
+            gen_paren(s-1, e, current+"(", res);
+        }
+        if(e>s){
+            gen_paren(s, e-1, current+")", res);
+        }
+    }
+    vector<string> generateParenthesis(int n) {
+        vector<string> res;
+        gen_paren(n, n, "", res);
+        return res;
+    }
+};
