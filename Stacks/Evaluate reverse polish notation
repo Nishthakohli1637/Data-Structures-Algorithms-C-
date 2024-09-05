@@ -1,0 +1,34 @@
+class Solution {
+public:
+int evaluate(int n, int m, string op){
+    if(op=="+"){
+    return n+m;
+    }
+    if(op=="-"){
+        return n-m;
+    }
+    if(op=="*"){
+        return n*m;
+    }
+    if(op=="/")
+        return n/m;
+    
+}
+    int evalRPN(vector<string>& tokens) {
+        stack<int> st;
+        for(int i=0;i<tokens.size();i++){
+            if(tokens[i]=="+" || tokens[i]=="*" || tokens[i]=="-" || tokens[i]=="/"){
+                int n=st.top();
+                st.pop();
+                int m=st.top();
+                st.pop();
+                int ans=evaluate(m, n, tokens[i]);
+                st.push(ans);
+            }
+            else{
+                st.push(stoi(tokens[i]));
+            }
+        }
+        return st.top();
+    }
+};
