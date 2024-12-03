@@ -1,0 +1,25 @@
+class Solution{
+    public:
+    long long sum(long long A[], long long N, long long k){
+        priority_queue<long long> pq;
+        for(int i=0;i<N;i++){
+            pq.push(A[i]);
+            if(pq.size()>k){
+                pq.pop();
+            }
+        }
+        return pq.top();
+    }
+    long long sumBetweenTwoKth( long long A[], long long N, long long K1, long long K2)
+    {
+      long long ans1=sum(A, N, K1);
+      long long ans2=sum(A, N, K2);
+      long long ans=0;
+      for(int i=0;i<N;i++){
+      if(A[i]>ans1 && A[i]<ans2){
+          ans+=A[i];
+      }
+      }
+      return ans;
+    }
+};
