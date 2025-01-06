@@ -1,0 +1,21 @@
+class Solution {
+  public:
+  void reverse_inorder(Node *root, int k, int &cnt, int &k_large){
+      if(root==NULL || cnt>k){
+          return;
+      }
+      reverse_inorder(root->right, k, cnt, k_large);
+      cnt++;
+      if(cnt==k){
+          k_large=root->data;
+          return;
+      }
+      reverse_inorder(root->left, k, cnt, k_large);
+  }
+    int kthLargest(Node *root, int k) {
+        // Your code here
+        int k_large=INT_MAX;
+        int cnt=0;
+        reverse_inorder(root, k, cnt, k_large);
+        return k_large;
+    }
