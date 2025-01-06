@@ -1,0 +1,15 @@
+class Solution {
+public:
+    bool is_valid(TreeNode* root, long minv, long maxv){
+        if(root==NULL){
+            return true;
+        }
+        if(root->val>=maxv || root->val<=minv){
+            return false;
+        }
+        return is_valid(root->left, minv, root->val) && is_valid(root->right, root->val, maxv);
+    }
+    bool isValidBST(TreeNode* root) {
+        return is_valid(root, LONG_MIN, LONG_MAX);
+    }
+};
