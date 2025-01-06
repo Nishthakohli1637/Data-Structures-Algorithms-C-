@@ -1,0 +1,21 @@
+class Solution {
+public:
+void inorder(TreeNode* root, int k, int &cnt, int &k_small){
+    if(root==NULL || cnt>k){
+        return;
+    }
+    inorder(root->left, k, cnt, k_small);
+    cnt++;
+    if(cnt==k){
+        k_small=root->val;
+        return;
+    }
+    inorder(root->right, k, cnt, k_small);
+}
+    int kthSmallest(TreeNode* root, int k) {
+        int k_small=INT_MIN;
+        int cnt=0;
+        inorder(root, k, cnt, k_small);
+        return k_small;
+    }
+};
