@@ -21,3 +21,25 @@ public:
         dfs(image, sr, sc, newColor, ans, row, col, inicolor);
         return ans;
     }
+
+
+code 2:
+class Solution {
+    void dfs(int sr, int sc, vector<vector<int>>& image, vector<vector<int>>& ans, int color, int start_color){
+        if(sc<0 || sr<0 || sc>=image[0].size() || sr>=image.size() || image[sr][sc]!=start_color || ans[sr][sc]==color){
+            return;
+        }
+        ans[sr][sc]=color;
+        dfs(sr+1, sc, image, ans, color, start_color);
+        dfs(sr, sc+1, image, ans, color, start_color);
+        dfs(sr-1, sc, image, ans, color, start_color);
+        dfs(sr, sc-1, image, ans, color, start_color);
+    }
+public:
+    vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int color) {
+        int start_color=image[sr][sc];
+        vector<vector<int>> ans=image;
+        dfs(sr, sc, image, ans, color, start_color);
+        return ans;
+    }
+};
